@@ -16,7 +16,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import logo from '../../../images/logo.png';
 const Navigation = () => {
     const [state, setState] = React.useState(false);
     const { user, logOut } = useAuth();
@@ -36,11 +36,18 @@ const Navigation = () => {
                 display: 'flex',
                 alignItems: 'center',
             },
-
+        },
+        headerLogo: {
+            [theme.breakpoints.down('sm')]: {
+                justifyContent: 'flex-end'
+            },
+            [theme.breakpoints.up('sm')]: {
+                justifyContent: 'flex-start'
+            },
         }
     });
 
-    const { navIcon, navContainer } = useStyle();
+    const { navIcon, navContainer, headerLogo } = useStyle();
 
     return (
         <>
@@ -59,12 +66,14 @@ const Navigation = () => {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            News
+
+                     <Link to="/" style={{textDecoration: 'none', color: 'white', display: 'flex', alignItems: 'center'}} className={headerLogo}>
+                     <img style={{ width: 40}} src={logo} alt="" />
+                        <span style={{fontSize: 18, paddingLeft: 8}}>CAR UNIVERSE</span>
+                     </Link>
+
                         </Typography>
                         <Box className={navContainer}>
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
-                                <Button color="inherit">Home</Button>
-                            </Link>
                             <Link style={{ textDecoration: 'none', color: 'white' }} to="/explore">
                                 <Button color="inherit">Explore</Button>
                             </Link>
@@ -74,7 +83,7 @@ const Navigation = () => {
                                         <Link style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
                                             <Button color="inherit">Dashboard</Button>
                                         </Link>
-                                        <span >Hello, {user?.displayName}</span>
+                                        <span>Hello, {user?.displayName}</span>
                                         <img style={{ height: 40, width: 40, borderRadius: '50%', marginLeft: '5px' }} src={user?.photoURL} alt="" />
                                         <Button onClick={logOut} color="inherit">Log Out</Button>
                                     </> :
@@ -98,6 +107,12 @@ const Navigation = () => {
                             role="presentation"
                         >
                             <List>
+                            <>
+                                                    <Box style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 15px', color: 'red'}}>
+                                                    <span>Hello, {user?.displayName}</span>
+                                                    <img style={{ height: 40, width: 40, borderRadius: '50%', marginLeft: '5px' }} src={user?.photoURL} alt="" />
+                                                    </Box></>
+                                            <Divider />
                                 <ListItem button>
                                     <ListItemText>
                                         <Link to="/" style={{ textDecoration: 'none', color: '#000' }}>Home</Link>
@@ -119,13 +134,7 @@ const Navigation = () => {
                                                 </ListItemText>
                                             </ListItem>
                                             <Divider />
-                                            <ListItem button>
-                                                <ListItemText>
-                                                    <span>Hello, {user?.displayName}</span>
-                                                    <img style={{ height: 40, width: 40, borderRadius: '50%', marginLeft: '5px' }} src={user?.photoURL} alt="" />
-                                                </ListItemText>
-                                            </ListItem>
-                                            <Divider />
+                                                  
                                             <ListItem button>
                                                 <ListItemText>
                                                     <Button onClick={logOut} color="inherit" style={{ padding: 0 }}>Log Out</Button>
@@ -137,7 +146,7 @@ const Navigation = () => {
                                         <>
                                             <ListItem button>
                                                 <ListItemText>
-                                                <Link to="/login" style={{ textDecoration: 'none', color: '#000' }}>Login</Link>
+                                                <Link to="/login" style={{ textDecoration: 'none', color: '#dc3551' }}>Login</Link>
                                                 </ListItemText>
                                             </ListItem>
                                             <Divider />

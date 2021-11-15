@@ -8,7 +8,7 @@ const ManageProducts = () => {
     const { user, token } = useAuth();
     const [cars, setCars] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/cars`, {
+        axios.get(`https://shrouded-tundra-85918.herokuapp.com/cars`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -22,7 +22,7 @@ const ManageProducts = () => {
     const handleDeleteProduct = id =>{
         const proceed = window.confirm('Are you sure, you want to cancel this order?');
         if(proceed){
-        axios.delete(`http://localhost:5000/cars/${id}`, {
+        axios.delete(`https://shrouded-tundra-85918.herokuapp.com/cars/${id}`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -40,8 +40,10 @@ const ManageProducts = () => {
     return (
         <Box>
             <Container>
-                <Typography variant="h4">Total Products:  {cars.length}
+            <Typography variant="body2" style={{ fontSize: 35, fontWeight: 500, color: '#232628', letterSpacing: 1, marginBottom: 10 }}>
+                    Total Products: {cars.length}
                 </Typography>
+                <Box style={{ width: 200, height: 3, background: '#cd6621', margin: '0 auto'}}></Box>
                 {
                     cars.length === 0 ? <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <CircularProgress />

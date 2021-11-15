@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Car from '../Shared/Car/Car';
 import useCars from '../../hooks/useCars';
 import Navigation from '../Shared/Navigation/Navigation';
+import Footer from '../Shared/Footer/Footer';
 
 const ExploreCars = () => {
     const [cars] = useCars();
@@ -32,6 +33,7 @@ const ExploreCars = () => {
                 </Grid>
         }
         </Container>
+        <Footer></Footer>
      </>
     );
 };

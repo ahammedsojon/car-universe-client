@@ -5,7 +5,7 @@ const useCars = ()=>{
     const [cars, setCars] = useState([]);
     const {token} = useAuth();
     useEffect(() => {
-        axios.get('http://localhost:5000/cars', {
+        axios.get('https://shrouded-tundra-85918.herokuapp.com/cars', {
             headers: {
                 'authorization' : `Bearer ${token}`
             }

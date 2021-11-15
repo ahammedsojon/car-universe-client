@@ -8,7 +8,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
-    const {logInUser} = useAuth();
+    const {logInUser, admin} = useAuth();
     const location = useLocation();
     const history = useHistory();
     const [user, setUser] = useState({})
@@ -28,6 +28,9 @@ const Login = () => {
         <Container>
             <Box sx={{ flexGrow: 1 }} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Grid container spacing={2} style={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid item xs={12} md={6}>
+                        <img style={{maxWidth: '100%'}} src={loginImage} alt="" />
+                    </Grid>
                     <Grid item xs={12} md={6} sx={{ textAlign: 'left' }}>
                         <Typography variant="h5">Log in</Typography>
                         <form onSubmit={handleOnSubmit} style={{ width: '75%' }}>
@@ -37,6 +40,7 @@ const Login = () => {
                                 name="email"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <TextField
                             onBlur={handleOnBlur}
@@ -45,6 +49,7 @@ const Login = () => {
                                 type="password"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <Button
                              type="submit"
@@ -55,9 +60,6 @@ const Login = () => {
                         <Link to="/register" style={{ textDecoration: 'none' }}>
                             <Button variant="inherit" sx={{ mt: 2 }}>New user? Please Register</Button>
                         </Link>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <img style={{maxWidth: '100%'}} src={loginImage} alt="" />
                     </Grid>
                 </Grid>
             </Box>

@@ -1,7 +1,10 @@
 import { Typography, Box, TextField, Button } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/system';
 import axios from 'axios';
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+
 
 const MakeAdmin = () => {
     const [user, setUser] = useState({})
@@ -14,7 +17,7 @@ const MakeAdmin = () => {
     const handleOnSubmit = e => {
         e.preventDefault();
         const userEmail = user;
-        axios.put('http://localhost:5000/users', {
+        axios.put('https://shrouded-tundra-85918.herokuapp.com/users', {
             userEmail
         }, {
             headers: {
@@ -35,10 +38,30 @@ const MakeAdmin = () => {
             })
     }
 
+    const theme = useTheme();
+    const useStyles = makeStyles({
+        textField: {
+            [theme.breakpoints.down('sm')]: {
+                width: '80%',
+                margin: '0 auto'
+            },
+             [theme.breakpoints.up('sm')]: {
+                width: '50%',
+                margin: '0 auto'
+            },
+        }
+    })
+
+    const {textField} = useStyles();
+
     return (
         <Box>
-            <Typography variant="h4">Make an Admin</Typography>
-            <form style={{ width: '40%', margin: '0 auto' }} onSubmit={handleOnSubmit}>
+             <Typography variant="body2" style={{ fontSize: 35, fontWeight: 500, color: '#232628', letterSpacing: 1, marginBottom: 10 }}>
+                    Make an Admin
+                </Typography>
+                <Box style={{ width: 200, height: 3, background: '#cd6621', margin: '0 auto'}}></Box>
+                <Box style={{marginTop: 20}}></Box>
+            <form className={textField} onSubmit={handleOnSubmit}>
                 <TextField
                     onBlur={handleOnBlur}
                     id="standard-basic"

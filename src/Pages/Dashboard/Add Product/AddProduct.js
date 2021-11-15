@@ -20,7 +20,7 @@ const AddProduct = () => {
         e.preventDefault();
         product.transmission = 'Automatic';
         product.mpg = '22/32';
-        axios.post('http://localhost:5000/cars',{
+        axios.post('https://shrouded-tundra-85918.herokuapp.com/cars',{
             product
         }, {
             headers: {
@@ -38,7 +38,11 @@ const AddProduct = () => {
     }
     return (
         <Box>
-            <Typography variant="h3">Add a product</Typography>
+            <Typography variant="body2" style={{ fontSize: 35, fontWeight: 500, color: '#232628', letterSpacing: 1, marginBottom: 10 }}>
+                    Add a product
+                </Typography>
+                <Box style={{ width: 200, height: 3, background: '#cd6621', margin: '0 auto'}}></Box>
+                <Box style={{marginTop: 20}}></Box>
             <form onSubmit={handleOnSubmit} style={{width: '75%', margin: '0 auto'}}>
                 <TextField
                     sx={{ mb: 1 }}
@@ -46,7 +50,8 @@ const AddProduct = () => {
                     label="Car Name"
                     name="name"
                     variant="outlined"
-                    fullWidth />
+                    fullWidth
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                     onBlur={handleOnBlur}
@@ -55,7 +60,8 @@ const AddProduct = () => {
                     name="description"
                     variant="outlined"
                     fullWidth
-                    multiline />
+                    multiline
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                      onBlur={handleOnBlur}
@@ -63,14 +69,16 @@ const AddProduct = () => {
                     name="price"
                     variant="outlined"
                     type="number"
-                    fullWidth />
+                    fullWidth
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                      onBlur={handleOnBlur}
                     label="Image URL Includes https://"
                     name="img"
                     variant="outlined"
-                    fullWidth />
+                    fullWidth
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                      onBlur={handleOnBlur}
@@ -78,7 +86,8 @@ const AddProduct = () => {
                     name="mileage"
                     variant="outlined"
                     type="number"
-                    fullWidth />
+                    fullWidth
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                     label="Transmission"
@@ -86,7 +95,8 @@ const AddProduct = () => {
                     variant="outlined"
                     defaultValue="Automatic"
                     disabled
-                    fullWidth />
+                    fullWidth
+                    required />
                 <TextField
                     sx={{ mb: 1 }}
                     label="MPG CITY / MPG HWY"
@@ -94,7 +104,8 @@ const AddProduct = () => {
                     variant="outlined"
                     defaultValue="22/32"
                     disabled
-                    fullWidth />
+                    fullWidth
+                    required />
                     <Button type="submit" variant="contained" style={{width: '100%'}}>Add Product</Button>
             </form>
         </Box>

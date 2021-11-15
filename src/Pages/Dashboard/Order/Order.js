@@ -14,7 +14,7 @@ const Order = ({ order , handleDeleteOrder, updateable  }) => {
   const [status, setStatus] = useState(orderStatus);
   const {token} = useAuth();
   useEffect(() => {
-    axios.get(`http://localhost:5000/cars/car/?orderId=${orderId}`, {
+    axios.get(`https://shrouded-tundra-85918.herokuapp.com/cars/car/?orderId=${orderId}`, {
       headers: {
           'authorization': `Bearer ${token}`
       }
@@ -25,7 +25,7 @@ const Order = ({ order , handleDeleteOrder, updateable  }) => {
 
   const handleUpdateStatus = id => {
     console.log(id)
-    axios.put(`http://localhost:5000/orders/${id}`, {
+    axios.put(`https://shrouded-tundra-85918.herokuapp.com/orders/${id}`, {
       headers: {
           'authorization': `Bearer ${token}`
       }
@@ -63,9 +63,9 @@ const Order = ({ order , handleDeleteOrder, updateable  }) => {
               {updateable ? <>
                 {
                   status === 'Pending' ?
-                    <Button onClick={() => handleUpdateStatus(_id)} variant="contained" style={{ backgroundColor: 'yellow', color: 'white' }}> {status}</Button>
+                    <Button onClick={() => handleUpdateStatus(_id)} variant="contained" style={{ backgroundColor: '#ffc107', color: 'white' }}> {status}</Button>
                     :
-                    <Button style={{ backgroundColor: 'green', color: 'white' }}> {status}</Button>
+                    <Button style={{ backgroundColor: '#28a745', color: 'white' }}> {status}</Button>
                 }
               </>
                 :
@@ -74,13 +74,13 @@ const Order = ({ order , handleDeleteOrder, updateable  }) => {
                  orderStatus === 'Pending'? 
                   <Button variant="" style={{ backgroundColor: 'gray', color: 'white' }}>Pending</Button>
                   :
-                  <Button variant="" style={{ backgroundColor: 'green', color: 'white' }}>Shipped</Button>
+                  <Button variant="" style={{ backgroundColor: '#28a745', color: 'white' }}>Shipped</Button>
                }
                </>
               }
 
 
-              <Button onClick={() => handleDeleteOrder(_id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', marginLeft: 10 }}> Cancel</Button>
+              <Button onClick={() => handleDeleteOrder(_id)} variant="contained" style={{ backgroundColor: '#dc3551', color: 'white', marginLeft: 10 }}> Cancel</Button>
             </Box>
           </CardContent>
         </Card>

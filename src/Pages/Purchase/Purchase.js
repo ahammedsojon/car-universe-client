@@ -13,6 +13,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../hooks/useAuth';
+import Navigation from '../Shared/Navigation/Navigation';
+import Footer from '../Shared/Footer/Footer';
 
 
 const Purchase = () => {
@@ -21,7 +23,7 @@ const Purchase = () => {
     const {user, token} = useAuth();
     const [booking, setBooking] = useState({name: user?.displayName, email: user?.email, address: '', phone: '', orderDate: new Date().toLocaleDateString(), deliveryDate: ''});
     useEffect(() => {
-        axios.get(`http://localhost:5000/cars/${carId}`, {
+        axios.get(`https://shrouded-tundra-85918.herokuapp.com/cars/${carId}`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -41,7 +43,7 @@ const Purchase = () => {
         e.preventDefault();
         const bookingOrder = {...booking, orderStatus: 'Pending', orderId: carId };
         console.log(bookingOrder)
-        axios.post(`http://localhost:5000/orders`, {
+        axios.post(`https://shrouded-tundra-85918.herokuapp.com/orders`, {
             bookingOrder
         }, {
             headers: {
@@ -57,12 +59,13 @@ const Purchase = () => {
     }
     return (
         <>
+        <Navigation></Navigation>
            <Box>
                 <img style={{ width: '100%', height: '426px', objectFit: 'cover'}} src={car?.img} alt="" />
            </Box>
         <Container>
             <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
-                <Grid container spacing={2} style={{ display: 'flex', alignItems: 'center', margin: '20px 0' }}>
+                <Grid container spacing={2} style={{ display: 'flex', alignItems: 'center', margin: '20px 0', maxWidth: '100%' }}>
                     <Grid item xs={12} md={6}>
                         <Typography variant="h3">
                             {car?.name}
@@ -119,7 +122,8 @@ const Purchase = () => {
                                 label="Address"
                                 name="address"
                                 variant="outlined"
-                                fullWidth />
+                                fullWidth
+                                required />
                             <TextField
                                 sx={{ mb: 1 }}
                                 onBlur={handleOnBlur}
@@ -127,20 +131,23 @@ const Purchase = () => {
                                 name="phone"
                                 variant="outlined"
                                 type="number"
-                                fullWidth />
+                                fullWidth
+                                required />
                             <TextField
                                 sx={{ mb: 1 }}
                                 onBlur={handleOnBlur}
                                 label="Delivery Date"
                                 name="deliveryDate"
                                 variant="outlined"
-                                fullWidth />
+                                fullWidth
+                                required />
                             <Button style={{width: '100%'}} type="submit" variant="contained">Place Order</Button>
                         </form>
                     </Grid>
                 </Grid>
             </Box>
         </Container>
+        <Footer></Footer>
         </>
     );
 };

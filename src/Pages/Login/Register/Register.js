@@ -38,6 +38,7 @@ const Register = () => {
                                 name="name"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <TextField
                              onBlur={handleOnBlur}
@@ -47,6 +48,7 @@ const Register = () => {
                                 type="email"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <TextField
                              onBlur={handleOnBlur}
@@ -56,6 +58,7 @@ const Register = () => {
                                 type="password"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <TextField
                              onBlur={handleOnBlur}
@@ -65,6 +68,7 @@ const Register = () => {
                                 type="password"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <TextField
                              onBlur={handleOnBlur}
@@ -73,6 +77,7 @@ const Register = () => {
                                 name="image"
                                 fullWidth
                                 variant="standard"
+                                required
                             />
                             <Button 
                             type="submit"

@@ -8,7 +8,7 @@ const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
     const [updateable, setUpdateable] = useState(true);
     useEffect(() => {
-        axios.get(`http://localhost:5000/orders`, {
+        axios.get(`https://shrouded-tundra-85918.herokuapp.com/orders`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -22,7 +22,7 @@ const ManageAllOrders = () => {
     const handleDeleteOrder = id =>{
         const proceed = window.confirm('Are you sure, you want to cancel this order?');
         if(proceed){
-        axios.delete(`http://localhost:5000/orders/${id}`, {
+        axios.delete(`https://shrouded-tundra-85918.herokuapp.com/orders/${id}`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -40,8 +40,10 @@ const ManageAllOrders = () => {
     return (
         <Box>
             <Container>
-                <Typography variant="h4">Total Orders:  {orders.length}
+            <Typography variant="body2" style={{ fontSize: 35, fontWeight: 500, color: '#232628', letterSpacing: 1, marginBottom: 10 }}>
+                    Total Orders: {orders.length}
                 </Typography>
+                <Box style={{ width: 200, height: 3, background: '#cd6621', margin: '0 auto'}}></Box>
                 {
                     orders.length === 0 ? <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <CircularProgress />

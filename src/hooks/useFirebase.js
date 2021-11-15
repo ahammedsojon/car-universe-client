@@ -11,6 +11,25 @@ const useFirebase = () => {
     const [token, setToken] = useState('');
     const auth = getAuth();
 
+    useEffect(() => {
+        axios.get(`https://shrouded-tundra-85918.herokuapp.com/users/${user?.email}`, {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => setAdmin(res.data.admin));
+    }, [user?.email, admin])
+
+    const updateUserProfile = (name, image) => {
+        updateProfile(auth.currentUser, {
+            displayName: name, photoURL: image
+        }).then(() => {
+        }).catch((error) => {
+            // An error occurred
+            // ...
+        });
+    }
+
     const createNewUser = (email, password, name, image, history) => {
         setLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
@@ -32,8 +51,13 @@ const useFirebase = () => {
         setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const redirect_uri = location?.state?.from || '';
-                history.replace(redirect_uri);
+                if (admin) {
+                    history.replace('/dashboard')
+                } else {
+                    const redirect_uri = location?.state?.from || '';
+                    history.replace(redirect_uri);
+                }
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -52,22 +76,15 @@ const useFirebase = () => {
             .finally(() => setLoading(false));
     }
 
-    const updateUserProfile = (name, image)=>{
-        updateProfile(auth.currentUser, {
-            displayName: name, photoURL: image}).then(() => {
-          }).catch((error) => {
-            // An error occurred
-            // ...
-          });
-    }
+   
 
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 getIdToken(user)
-                .then(idToken => {
-                    setToken(idToken);
-                })
+                    .then(idToken => {
+                        setToken(idToken);
+                    })
                 setUser(user);
             } else {
                 // User is signed out
@@ -78,27 +95,19 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [])
 
-    const saveUser = (name, email)=>{
-        const user = {name, email};
-        axios.post('http://localhost:5000/users',{
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        axios.post('https://shrouded-tundra-85918.herokuapp.com/users', {
             user
         }, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
         })
-        .then(res => console.log((res)));
+            .then(res => console.log((res)));
     }
 
-    useEffect(()=>{
-        axios.get(`http://localhost:5000/users/${user?.email}`, {
-            headers: {
-                'authorization': `Bearer ${token}`
-            }
-        })
-        .then(res => setAdmin(res.data.admin));
-    }, [user?.email, admin])
-console.log(token);
+ 
     return {
         user,
         loading,

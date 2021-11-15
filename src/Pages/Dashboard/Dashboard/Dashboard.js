@@ -32,6 +32,7 @@ import ManageProducts from '../ManageProducts/ManageProducts';
 import AddProduct from '../Add Product/AddProduct';
 import AddReview from '../AddReview/AddReview';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import DashboardHome from '../DashboardHome/DashboardHome';
 
 const drawerWidth = 240;
 
@@ -63,7 +64,8 @@ function Dashboard(props) {
             </ListItemText>
           </ListItem>
         </Link>
-
+        <Link to={`${url}`} style={{ textDecoration: 'none', color: '#757575', fontWeight: 'bold' }}>
+            </Link>
         {
           !admin ? <>
           <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: '#757575', fontWeight: 'bold' }}> 
@@ -216,10 +218,13 @@ function Dashboard(props) {
 
         <Switch>
           <Route exact path={path}>
-            <h3>Please select a topic.</h3>
+           <DashboardHome></DashboardHome>
           </Route>
           <Route path={`${path}/pay`}>
             <Pay></Pay>
+          </Route>
+          <Route path={`${path}/myOrders`}>
+            <MyOrders></MyOrders>
           </Route>
           <Route path={`${path}/addReview`}>
             <AddReview></AddReview>
@@ -227,9 +232,7 @@ function Dashboard(props) {
           <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>
           </AdminRoute>
-           <AdminRoute path={`${path}/myOrders`}>
-            <MyOrders></MyOrders>
-          </AdminRoute>
+          
            <AdminRoute path={`${path}/maangeAllOrders`}>
             <ManageAllOrders></ManageAllOrders>
           </AdminRoute>

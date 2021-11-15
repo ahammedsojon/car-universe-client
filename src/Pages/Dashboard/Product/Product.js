@@ -29,7 +29,7 @@ const {_id, name , description, img, price} = car;
              Price: ${price}
             </Typography>
             <Box style={{ textAlign: 'right', marginTop: 10 }}>
-              <Button onClick={() => handleDeleteProduct(_id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', marginLeft: 10 }}> Delete</Button>
+              <Button onClick={() => handleDeleteProduct(_id)} variant="contained" style={{ backgroundColor: '#dc3551', color: 'white', marginLeft: 10 }}> Delete</Button>
             </Box>
           </CardContent>
         </Card>

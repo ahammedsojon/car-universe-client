@@ -10,7 +10,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const {token} = useAuth();
     useEffect(() => {
-        axios.get('http://localhost:5000/reviews', {
+        axios.get('https://shrouded-tundra-85918.herokuapp.com/reviews', {
             headers: {
                 'authorization': `Bearer ${token}`
             }

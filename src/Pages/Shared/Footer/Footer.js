@@ -74,7 +74,7 @@ const Footer = () => {
                             <Typography variant="body2" style={{ color: 'white', marginBottom: '10px', fontSize: '18px', fontWeight: 'normal' }}>SUBSCRIBE
                             </Typography>
                             <form onSubmit={handleOnSubmit} style={{ display: 'flex' }}>
-                                <input type="email" style={{ backgroundColor: 'white', padding: 10, width: '805', outline: 'none' }} placeholder="Enter your email" />
+                                <input type="email" style={{ backgroundColor: 'white', padding: 10, width: '805', outline: 'none' }} placeholder="Enter your email" required />
                                 <Button type="submit" variant="contained"> <i className="fas fa-wifi"></i></Button>
                             </form>
                         </Grid>

@@ -16,7 +16,7 @@ const AddReview = () => {
     }
     const handleOnSubmit = e => {
         e.preventDefault();
-       axios.put(`http://localhost:5000/reviews/${user?.email}`, {
+       axios.put(`https://shrouded-tundra-85918.herokuapp.com/reviews/${user?.email}`, {
            review: userReview
        }, {
         headers: {
@@ -33,7 +33,9 @@ const AddReview = () => {
     }
     return (
         <Box>
-            <Typography variant="h4" sx={{mb:5}}>Give a review</Typography>
+            <Typography variant="h4" sx={{mb:2}}>Give a review</Typography>
+            <Box style={{ width: 200, height: 3, background: '#cd6621', margin: '0 auto'}}></Box>
+            <Box sx={{mb: 5}}></Box>
             <form onSubmit={handleOnSubmit} style={{ width: '75%', margin: '0 auto' }}>
                 <TextField
                 sx={{mb:2}}
@@ -68,6 +70,7 @@ const AddReview = () => {
                     multiline
                     minRows={3}
                     fullWidth
+                    required
                 />
                 <TextField
                 sx={{mb:2}}
@@ -77,6 +80,7 @@ const AddReview = () => {
                     name="rating"
                     variant="outlined"
                     fullWidth
+                    required
                 />
                 <Button style={{width: '100%'}} type="submit" variant="contained">Add Review</Button>
             </form>
