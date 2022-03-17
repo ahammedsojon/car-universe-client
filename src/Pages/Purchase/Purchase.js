@@ -36,7 +36,7 @@ const Purchase = () => {
         },
       })
       .then((res) => setCar(res.data));
-  }, []);
+  }, [carId, token]);
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
