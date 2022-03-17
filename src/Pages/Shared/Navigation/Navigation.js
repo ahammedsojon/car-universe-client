@@ -25,7 +25,7 @@ const Navigation = () => {
     const useStyle = makeStyles({
         navIcon: {
             [theme.breakpoints.up('sm')]: {
-                display: 'none'
+                display: 'none !important'
             },
         },
         navContainer: {
